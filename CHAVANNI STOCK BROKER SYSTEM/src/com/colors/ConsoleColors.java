@@ -12,6 +12,7 @@ public class ConsoleColors {
 	public static final String YELLOW = "\u001B[33m";
 	public static final String WHITE = "\u001B[37m";
 	//java terminal color
+	public static final String ANSI_RESET = "\u001B[47m\u001B[0m";
 	public static final String ANSI_YELLOW_BACKGROUND = "\u001B[43m";
 	public static final String ANSI_BLUE_BACKGROUND = "\u001B[44m";
 	public static final String ANSI_BLACK_BACKGROUND = "\u001B[40m";
@@ -20,5 +21,5 @@ public class ConsoleColors {
 	public static final String ANSI_GREEN_BACKGROUND = "\u001B[42m";
 	public static final String ANSI_WHITE_BACKGROUND = "\u001B[47m";
 	//strike through
-	boolean STRIKETHROUGH_ON = true;
+//	boolean STRIKETHROUGH_ON = true;
 }
