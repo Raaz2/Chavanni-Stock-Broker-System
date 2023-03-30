@@ -23,17 +23,17 @@ public class CustomerAfterLogin {
 			choice = sc.nextInt();
 			
 			switch(choice) {
-				case 1 : 
+				case 1 : //viewAllStocks();
 					break;
-				case 2 : 
+				case 2 : //buyStocks();
 					break;
-				case 3 : 
+				case 3 : //sellStocks();
 					break;
-				case 4 : 
+				case 4 : //viewTransactionHistory();
 					break;
-				case 5 : 
+				case 5 : //logout();
 					break;
-				case 6 : 
+				case 6 : //delete();
 					break;
 				case 7 : 
 					break;

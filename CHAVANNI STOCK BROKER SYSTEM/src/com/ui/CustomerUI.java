@@ -16,14 +16,14 @@ public class CustomerUI {
 		System.out.println("1. Sign Up ");
 		System.out.println("2. Login");
 		System.out.println("0. Exit");
-		System.out.print("Enter your selection ");
+		System.out.print("Enter your selection "); 
 		choice = sc.nextInt();
 		switch(choice) {
 			case 1 : customerSignUp(sc);
 				break;
 			case 2 : CustomerAfterLogin.customerLogin(sc);
 				break;
-			case 0 : //System.out.println("");
+			case 0 : System.out.println("Thanks for using!");
 				break;
 			default : System.out.println("Invalid selection, try again!");
 		}

@@ -35,6 +35,7 @@ public class BrokerUI {
 			System.out.println("5. Delete customer");
 			System.out.println("6. Delete stock");
 			System.out.println("7. Logout");
+			System.out.println("0. Exit");
 			System.out.print("Enter selection ");
 			
 			choice = sc.nextInt();
@@ -42,9 +43,9 @@ public class BrokerUI {
 					switch(choice) {
 						case 1: //viewAllCustomers();
 							break;
-						case 2: //addNewStocks();
+						case 2: StockUI.addNewStocks(sc);
 							break;
-						case 3: //viewAllStocks();
+						case 3: StockUI.viewAllStocks();
 							break;
 						case 4: //viewConsolidatedReport();
 							break;
