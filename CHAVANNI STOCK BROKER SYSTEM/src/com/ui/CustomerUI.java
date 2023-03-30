@@ -23,7 +23,7 @@ public class CustomerUI {
 				break;
 			case 2 : CustomerAfterLogin.customerLogin(sc);
 				break;
-			case 0 : //System.out.println("");
+			case 0 : System.out.println("Thanks for using!");
 				break;
 			default : System.out.println("Invalid selection, try again!");
 		}
