@@ -24,5 +24,7 @@ public interface CustomerDTO {
 	public void setEmail(String email);
 
 	public int getIsDelete();
-	public void setIsDelete(int isDelete);	
+	public void setIsDelete(int isDelete);
+	void setCustomerId(int customerId);
+	int getCustomerId();	
 }

@@ -23,7 +23,7 @@ public class CustomerAfterLogin {
 			choice = sc.nextInt();
 			
 			switch(choice) {
-				case 1 : //viewAllStocks();
+				case 1 : StockUI.viewAllStocks();
 					break;
 				case 2 : //buyStocks();
 					break;

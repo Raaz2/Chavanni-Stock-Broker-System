@@ -2,6 +2,8 @@ package com.ui;
 
 import java.util.Scanner;
 
+import com.dao.CustomerDAO;
+
 public class BrokerUI {
 
 	public static void showBrokerMenu(Scanner sc) {
@@ -41,7 +43,7 @@ public class BrokerUI {
 			choice = sc.nextInt();
 			
 					switch(choice) {
-						case 1: //viewAllCustomers();
+						case 1: StockUI.viewAllCustomers();
 							break;
 						case 2: StockUI.addNewStocks(sc);
 							break;
@@ -49,9 +51,9 @@ public class BrokerUI {
 							break;
 						case 4: //viewConsolidatedReport();
 							break;
-						case 5: //deleteCustomer();
+						case 5: BrokerAfterLogIn.deleteCustomer(sc);
 							break;
-						case 6: //deleteStock();
+						case 6: BrokerAfterLogIn.deleteStock(sc);
 							break;
 						case 7: //logout();
 							break;

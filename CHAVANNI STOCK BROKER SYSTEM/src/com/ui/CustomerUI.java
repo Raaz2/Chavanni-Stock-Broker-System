@@ -66,7 +66,7 @@ public class CustomerUI {
 		System.out.print("Enter your email address ");
 		String email = sc.next();
 		
-		CustomerDTO customerDto = new CustomerDTOImpl(firstName, lastName, userName, password, address, mob, email, 0);
+		CustomerDTO customerDto = new CustomerDTOImpl(0,firstName, lastName, userName, password, address, mob, email, 0);
 		CustomerDAO customerDao = new CustomerDAOImpl();
 		try {
 			customerDao.addCustomer(customerDto);

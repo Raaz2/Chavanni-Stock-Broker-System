@@ -13,9 +13,10 @@ public class CustomerDTOImpl implements CustomerDTO{
 	
 	CustomerDTOImpl(){}
 
-	public CustomerDTOImpl(String firstName, String lastName, String userName, String password,
+	public CustomerDTOImpl(int customerId, String firstName, String lastName, String userName, String password,
 			String address, String mobile, String email, int isDelete) {
 		super();
+		this.customerId = customerId;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.userName = userName;
@@ -24,6 +25,14 @@ public class CustomerDTOImpl implements CustomerDTO{
 		this.mobile = mobile;
 		this.email = email;
 		this.isDelete = isDelete;
+	}
+	@Override
+	public int getCustomerId() {
+		return customerId;
+	}
+	@Override
+	public void setCustomerId(int customerId) {
+		this.customerId = customerId;
 	}
 	@Override
 	public String getFirstName() {

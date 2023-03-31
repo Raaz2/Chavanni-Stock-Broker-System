@@ -4,8 +4,11 @@ import java.util.List;
 import java.util.Scanner;
 
 import com.colors.ConsoleColors;
+import com.dao.CustomerDAO;
+import com.dao.CustomerDAOImpl;
 import com.dao.StockDAO;
 import com.dao.StockDAOImpl;
+import com.dto.CustomerDTO;
 import com.dto.StockDTO;
 import com.dto.StockDTOImpl;
 import com.exceptions.SomethingWentWrongException;
@@ -42,6 +45,26 @@ public class StockUI {
 		ConsoleColors.ANSI_PURPLE_BACKGROUND +	"Price per unit: " + ConsoleColors.ANSI_RESET  + ConsoleColors.ANSI_YELLOW_BACKGROUND + ConsoleColors.BLACK + i.getPrice() + " " + ConsoleColors.ANSI_RESET 
 				+ "\n" +
 				"===================================================================================="
+					);
+		});
+		
+	}
+
+	public static void viewAllCustomers() {
+		CustomerDAO custDao = new CustomerDAOImpl();
+		List<CustomerDTO> list = custDao.viewAllCustomers();
+		list.forEach( i -> {
+			System.out.println(
+					ConsoleColors.ANSI_PURPLE_BACKGROUND +	"CustomerId: " + ConsoleColors.ANSI_RESET  + ConsoleColors.ANSI_YELLOW_BACKGROUND + ConsoleColors.BLACK +  i.getCustomerId() + " " + ConsoleColors.ANSI_RESET +
+					ConsoleColors.ANSI_PURPLE_BACKGROUND +	"FirstName: " + ConsoleColors.ANSI_RESET  + ConsoleColors.ANSI_YELLOW_BACKGROUND + ConsoleColors.BLACK +i.getFirstName() + " " + ConsoleColors.ANSI_RESET +
+					ConsoleColors.ANSI_PURPLE_BACKGROUND +	"LastName: " + ConsoleColors.ANSI_RESET  + ConsoleColors.ANSI_YELLOW_BACKGROUND + ConsoleColors.BLACK + i.getLastName() + " " + ConsoleColors.ANSI_RESET +
+					ConsoleColors.ANSI_PURPLE_BACKGROUND +	"Username: " + ConsoleColors.ANSI_RESET  + ConsoleColors.ANSI_YELLOW_BACKGROUND + ConsoleColors.BLACK + i.getUserName() + " " + ConsoleColors.ANSI_RESET +
+					ConsoleColors.ANSI_PURPLE_BACKGROUND +	"Password: " + ConsoleColors.ANSI_RESET  + ConsoleColors.ANSI_YELLOW_BACKGROUND + ConsoleColors.BLACK + i.getPassword() + " " + ConsoleColors.ANSI_RESET +
+					ConsoleColors.ANSI_PURPLE_BACKGROUND +	"Address: " + ConsoleColors.ANSI_RESET  + ConsoleColors.ANSI_YELLOW_BACKGROUND + ConsoleColors.BLACK + i.getAddress() + " " + ConsoleColors.ANSI_RESET +
+					ConsoleColors.ANSI_PURPLE_BACKGROUND +	"Mobile: " + ConsoleColors.ANSI_RESET  + ConsoleColors.ANSI_YELLOW_BACKGROUND + ConsoleColors.BLACK + i.getMobile() + " " + ConsoleColors.ANSI_RESET +
+					ConsoleColors.ANSI_PURPLE_BACKGROUND +	"Email: " + ConsoleColors.ANSI_RESET  + ConsoleColors.ANSI_YELLOW_BACKGROUND + ConsoleColors.BLACK + i.getEmail() + " " + ConsoleColors.ANSI_RESET 
+							+ "\n" +
+							"============================================================================================================================="
 					);
 		});
 		

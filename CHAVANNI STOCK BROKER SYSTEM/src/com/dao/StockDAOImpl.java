@@ -51,7 +51,7 @@ public class StockDAOImpl implements StockDAO{
 			conn = DBUtils.getConnectionToDb(); // connection to database
 			
 			//prepare the query 
-			String query = "select * from stock";
+			String query = "select * from stock where is_deleted = 0";
 			
 			// getting the prepare statement object
 			PreparedStatement ps = conn.prepareStatement(query);
@@ -78,5 +78,36 @@ public class StockDAOImpl implements StockDAO{
 		return list;
 		
 	}
+
+	public static void deleteStock(int id) {
+		Connection conn = null;
+		try {
+			conn = DBUtils.getConnectionToDb(); // connection to database
+			
+			//prepare the query 
+			String query = "update stock set is_deleted = 1 where StockId = ? ";
+			
+			// getting the prepare statement object
+			PreparedStatement ps = conn.prepareStatement(query);
+			ps.setInt(1, id);
+			
+			//executing query
+			ps.executeUpdate();
+			
+		} catch (SQLException | ClassNotFoundException e) {
+			
+		} finally {
+				try {
+					DBUtils.closeConnection(conn);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		}
+		
+		
+	}
+
+	
 
 }
