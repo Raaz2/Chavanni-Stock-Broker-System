@@ -9,6 +9,7 @@ import java.util.List;
 
 import com.dto.StockDTO;
 import com.dto.StockDTOImpl;
+import com.exceptions.NoRecordsFoundException;
 import com.exceptions.SomethingWentWrongException;
 
 public class StockDAOImpl implements StockDAO{
@@ -44,7 +45,7 @@ public class StockDAOImpl implements StockDAO{
 	}
 
 	@Override
-	public List<StockDTO> viewAllStock() {
+	public List<StockDTO> viewAllStock() throws NoRecordsFoundException {
 		Connection conn = null;
 		List<StockDTO> list = new ArrayList<>();
 		try {
@@ -56,6 +57,11 @@ public class StockDAOImpl implements StockDAO{
 			// getting the prepare statement object
 			PreparedStatement ps = conn.prepareStatement(query);
 			ResultSet rs = ps.executeQuery();
+			
+			if(DBUtils.isResultSetEmpty(rs)) {
+				System.out.println("No records found");
+				throw new NoRecordsFoundException("No records found...");
+			}
 			
 			while(rs.next()) {
 				int id = rs.getInt(1);

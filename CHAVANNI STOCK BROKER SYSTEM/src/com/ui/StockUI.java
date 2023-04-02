@@ -1,5 +1,6 @@
 package com.ui;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -11,6 +12,7 @@ import com.dao.StockDAOImpl;
 import com.dto.CustomerDTO;
 import com.dto.StockDTO;
 import com.dto.StockDTOImpl;
+import com.exceptions.NoRecordsFoundException;
 import com.exceptions.SomethingWentWrongException;
 
 public class StockUI {
@@ -33,7 +35,7 @@ public class StockUI {
 		
 	}
 
-	public static void viewAllStocks() {
+	public static void viewAllStocks() throws NoRecordsFoundException {
 		
 		StockDAO stDao = new StockDAOImpl();
 		List<StockDTO> list = stDao.viewAllStock();
@@ -52,7 +54,13 @@ public class StockUI {
 
 	public static void viewAllCustomers() {
 		CustomerDAO custDao = new CustomerDAOImpl();
-		List<CustomerDTO> list = custDao.viewAllCustomers();
+		List<CustomerDTO> list = new ArrayList<>();
+		try {
+			list = custDao.viewAllCustomers();
+		} catch (NoRecordsFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		list.forEach( i -> {
 			System.out.println(
 					ConsoleColors.ANSI_PURPLE_BACKGROUND +	"CustomerId: " + ConsoleColors.ANSI_RESET  + ConsoleColors.ANSI_YELLOW_BACKGROUND + ConsoleColors.BLACK +  i.getCustomerId() + " " + ConsoleColors.ANSI_RESET +
