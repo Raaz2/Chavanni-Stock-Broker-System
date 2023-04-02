@@ -13,22 +13,22 @@ import com.exceptions.SomethingWentWrongException;
 public class CustomerUI {
 	public static void showCustomerMenu(Scanner sc) {
 		int choice = 0;
-		System.out.println("1. Sign Up ");
-		System.out.println("2. Login");
-		System.out.println("0. Exit");
-		System.out.print("Enter your selection "); 
-		choice = sc.nextInt();
-		switch(choice) {
-			case 1 : customerSignUp(sc);
-				break;
-			case 2 : CustomerAfterLogin.customerLogin(sc);
-				break;
-			case 0 : System.out.println("Thanks for using!");
-				break;
-			default : System.out.println("Invalid selection, try again!");
-		}
-		
-		
+		do {
+			System.out.println("1. Sign Up ");
+			System.out.println("2. Login");
+			System.out.println("0. Exit");
+			System.out.print("Enter your selection "); 
+			choice = sc.nextInt();
+			switch(choice) {
+				case 1 : customerSignUp(sc);
+					break;
+				case 2 : CustomerAfterLogin.customerLogin(sc);
+					break;
+				case 0 : System.out.println("Thanks for using!");
+					break;
+				default : System.out.println("Invalid selection, try again!");
+			}
+		} while (choice!=0);
 	}
 
 	public static boolean customerLogin(Scanner sc)  {

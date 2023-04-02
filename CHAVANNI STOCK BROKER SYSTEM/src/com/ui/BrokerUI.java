@@ -2,7 +2,10 @@ package com.ui;
 
 import java.util.Scanner;
 
+import com.colors.ConsoleColors;
 import com.dao.CustomerDAO;
+import com.dao.LoggedInUser;
+import com.exceptions.NoRecordsFoundException;
 
 public class BrokerUI {
 
@@ -19,15 +22,20 @@ public class BrokerUI {
 		System.out.print("Please enter your password: ");
 		String password = sc.next();
 		if(userName.equalsIgnoreCase("admin") && password.equalsIgnoreCase("admin")) {
-			adminMenu(sc);
-			System.out.println("Broker login successful");
+			try {
+				System.out.println("Broker login successful");
+				adminMenu(sc);
+			} catch (NoRecordsFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		} else {
 			System.out.println("Invalid Username or Password");
 		}
 		
 	}
 
-	public static void adminMenu(Scanner sc) {
+	public static void adminMenu(Scanner sc) throws NoRecordsFoundException {
 		int choice = 0;
 		do {
 			System.out.println("1. View all the Customers");
@@ -55,13 +63,19 @@ public class BrokerUI {
 							break;
 						case 6: BrokerAfterLogIn.deleteStock(sc);
 							break;
-						case 7: //logout();
+						case 7: logout();
 							break;
 						case 0: System.out.println("Thanks for using");
 						 	break;
 						 default: System.out.println("Invalid selection, try again!");
 					}
-			} while (choice != 0);
+			} while (LoggedInUser.adminLoggedIn == 0);
+		
+	}
+
+	public static void logout() {
+		System.out.println(ConsoleColors.ANSI_WHITE_BACKGROUND+ConsoleColors.BLACK+"Admin Logged out!"+ConsoleColors.BLACK+ConsoleColors.ANSI_RESET);
+		LoggedInUser.adminLoggedIn = 1;
 		
 	}
 

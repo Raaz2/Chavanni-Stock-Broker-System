@@ -12,7 +12,7 @@ public interface CustomerDAO {
 
 	 void logIn(String userName, String password) throws SomethingWentWrongException, NoRecordsFoundException;
 
-	List<CustomerDTO> viewAllCustomers();
+	List<CustomerDTO> viewAllCustomers() throws NoRecordsFoundException;
 
 	 void deleteCustomer(int id);
 

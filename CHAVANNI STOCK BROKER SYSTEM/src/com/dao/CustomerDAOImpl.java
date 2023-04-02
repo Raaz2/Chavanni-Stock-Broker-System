@@ -85,7 +85,7 @@ public class CustomerDAOImpl implements CustomerDAO{
 	}
 
 	@Override
-	public List<CustomerDTO> viewAllCustomers() {
+	public List<CustomerDTO> viewAllCustomers() throws NoRecordsFoundException  {
 		Connection conn = null;
 		List<CustomerDTO> list = new ArrayList<>();
 		try {
@@ -98,6 +98,9 @@ public class CustomerDAOImpl implements CustomerDAO{
 			PreparedStatement ps = conn.prepareStatement(query);
 			ResultSet rs = ps.executeQuery();
 			
+			if(DBUtils.isResultSetEmpty(rs)) {
+				System.out.println("No records found");
+			}
 			while(rs.next()) {
 				int id = rs.getInt(1);
 				String first = rs.getString(2);
@@ -112,7 +115,7 @@ public class CustomerDAOImpl implements CustomerDAO{
 			}
 			
 		} catch (SQLException | ClassNotFoundException e) {
-			
+			throw new NoRecordsFoundException("No records found ");
 		} finally {
 				try {
 					DBUtils.closeConnection(conn);

@@ -13,7 +13,7 @@ public class UIMain {
 		Scanner sc = new Scanner(System.in);
 		int choice = 0;
 		do {
-			System.out.println("You are a ");
+			System.out.println("You are a :-  ");
 			System.out.println("1. Broker");
 			System.out.println("2. Customer");
 			System.out.println("0. Exit");
