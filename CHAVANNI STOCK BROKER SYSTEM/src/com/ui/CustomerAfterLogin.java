@@ -1,16 +1,20 @@
 package com.ui;
 
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Scanner;
 
 import com.colors.ConsoleColors;
+import com.dao.CustomerDAO;
+import com.dao.CustomerDAOImpl;
 import com.dao.LoggedInUser;
 import com.dao.OrdersDAO;
 import com.dao.OrdersDAOImpl;
+import com.dto.CustomerDTO;
+import com.dto.HoldingDTO;
 import com.exceptions.NoRecordsFoundException;
 
 public class CustomerAfterLogin {
-
 	public static void customerLogin(Scanner sc) {
 		
 		if(!CustomerUI.customerLogin(sc)) {
@@ -24,8 +28,8 @@ public class CustomerAfterLogin {
 			System.out.println("3. Buy Stocks ");
 			System.out.println("4. Sell Stocks ");
 			System.out.println("5. Withdraw fund from wallet");
-//			System.out.println("6. View Transaction history ");
-			System.out.println("6. Logout");
+			System.out.println("6. View holding");
+			System.out.println("7. Logout");
 //			System.out.println("8. Delete Account");
 			System.out.println("0. Exit");
 			System.out.println("Enter selection ");
@@ -47,9 +51,9 @@ public class CustomerAfterLogin {
 					break;
 				case 5 : withdrawFund(sc);
 					break;
-				case 6 : logout();//viewTransactionHistory();
+				case 6 : viewHolding();
 					break;
-				case 7 : //logout();
+				case 7 : logout();
 					break;
 				case 8 : //delete();
 					break;
@@ -59,6 +63,27 @@ public class CustomerAfterLogin {
 			}
 		} while (LoggedInUser.loggedInUserId != 0);
 		
+	}
+
+	private static void viewHolding() {
+		// TODO Auto-generated method stub
+		CustomerDAO cdao = new CustomerDAOImpl();
+		try {
+		 List<HoldingDTO> list = cdao.viewHolding();
+		 list.forEach( i -> {
+				System.out.println(
+			ConsoleColors.ANSI_PURPLE_BACKGROUND +	"StockId: " + ConsoleColors.ANSI_RESET  + ConsoleColors.ANSI_YELLOW_BACKGROUND + ConsoleColors.BLACK +  i.getStId() + " " + ConsoleColors.ANSI_RESET +
+			ConsoleColors.ANSI_PURPLE_BACKGROUND +	"StockName: " + ConsoleColors.ANSI_RESET  + ConsoleColors.ANSI_YELLOW_BACKGROUND + ConsoleColors.BLACK +i.getCompName() + " " + ConsoleColors.ANSI_RESET +
+			ConsoleColors.ANSI_PURPLE_BACKGROUND +	"TotalQuantity: " + ConsoleColors.ANSI_RESET  + ConsoleColors.ANSI_YELLOW_BACKGROUND + ConsoleColors.BLACK + i.getQuan() + " " + ConsoleColors.ANSI_RESET +
+			ConsoleColors.ANSI_PURPLE_BACKGROUND +	"Total Price: " + ConsoleColors.ANSI_RESET  + ConsoleColors.ANSI_YELLOW_BACKGROUND + ConsoleColors.BLACK + i.getTotalstockprice() + " " + ConsoleColors.ANSI_RESET 
+					+ "\n" +
+					"===================================================================================="
+						);
+			});
+		} catch (NoRecordsFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	private static void withdrawFund(Scanner sc) {

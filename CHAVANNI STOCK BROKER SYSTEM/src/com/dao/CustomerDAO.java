@@ -3,6 +3,7 @@ package com.dao;
 import java.util.List;
 
 import com.dto.CustomerDTO;
+import com.dto.HoldingDTO;
 import com.exceptions.NoRecordsFoundException;
 import com.exceptions.SomethingWentWrongException;
 
@@ -15,5 +16,7 @@ public interface CustomerDAO {
 	List<CustomerDTO> viewAllCustomers() throws NoRecordsFoundException;
 
 	 void deleteCustomer(int id);
+
+	 List<HoldingDTO> viewHolding() throws NoRecordsFoundException;
 
 }
