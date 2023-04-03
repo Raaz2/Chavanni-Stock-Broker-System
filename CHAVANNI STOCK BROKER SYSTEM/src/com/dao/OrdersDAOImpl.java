@@ -14,16 +14,17 @@ public class OrdersDAOImpl implements OrdersDAO {
 		Connection conn = null;
 		try {
 			conn = DBUtils.getConnectionToDb();
-			String q = "insert into holding (stId , quantity , cid , totalStockPrice , wid)"
-					+ "values(? ,? ,?,(select price from stock where stockid = ?) * ? ,"
+			String q = "insert into holding (stName,stId , quantity , cid , totalStockPrice , wid)"
+					+ "values((select  StockCompName from stock where StockId = ?),? ,? ,?,(select price from stock where stockid = ?) * ? ,"
 					+ "(select wid from wallet where cid = ?))";
 			PreparedStatement ps = conn.prepareStatement(q);
-			ps.setInt(1, stId);		
-			ps.setInt(2, quan);		
-			ps.setInt(3, LoggedInUser.loggedInUserId);		
-			ps.setInt(4, stId);		
-			ps.setInt(5, quan);		
-			ps.setInt(6, LoggedInUser.loggedInUserId);		
+			ps.setInt(1, stId);
+			ps.setInt(2, stId);		
+			ps.setInt(3, quan);		
+			ps.setInt(4, LoggedInUser.loggedInUserId);		
+			ps.setInt(5, stId);		
+			ps.setInt(6, quan);		
+			ps.setInt(7, LoggedInUser.loggedInUserId);		
 			ps.executeUpdate();
 		} catch (Exception e) {
 			// TODO: handle exception

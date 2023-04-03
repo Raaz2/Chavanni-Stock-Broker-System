@@ -10,11 +10,12 @@ import java.util.List;
 import com.colors.ConsoleColors;
 import com.dto.CustomerDTO;
 import com.dto.CustomerDTOImpl;
+import com.dto.HoldinDtoImpl;
+import com.dto.HoldingDTO;
 import com.dto.StockDTO;
 import com.dto.StockDTOImpl;
 import com.exceptions.NoRecordsFoundException;
 import com.exceptions.SomethingWentWrongException;
-
 public class CustomerDAOImpl implements CustomerDAO{
 
 	@Override
@@ -155,5 +156,47 @@ public class CustomerDAOImpl implements CustomerDAO{
 		}
 		
 	}
+
+	@Override
+	public List<HoldingDTO> viewHolding() throws NoRecordsFoundException {
+			Connection conn = null;
+			List<HoldingDTO> list = new ArrayList<>();
+			try {
+				conn = DBUtils.getConnectionToDb(); // connection to database
+				
+				//prepare the query 
+				String query = " select * from holding where is_Sold = 0;";
+				
+				// getting the prepare statement object
+				PreparedStatement ps = conn.prepareStatement(query);
+				ResultSet rs = ps.executeQuery();
+				
+				if(DBUtils.isResultSetEmpty(rs)) {
+					System.out.println("No records found");
+				}
+				while(rs.next()) {
+					int stId = rs.getInt(1);
+					String compName = rs.getString(2);
+					int cId = rs.getInt(3);
+					int quan = rs.getInt(4);
+					int wid = rs.getInt(5);
+					int totalstockprice = rs.getInt(6);
+					int isSold = rs.getInt(7);
+					list.add(new HoldinDtoImpl(stId,compName,cId,quan,wid,totalstockprice,isSold));
+				}
+				
+			} catch (SQLException | ClassNotFoundException e) {
+				throw new NoRecordsFoundException("No records found ");
+			} finally {
+					try {
+						DBUtils.closeConnection(conn);
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+			}
+			return list;
+	}
+	
 
 }
