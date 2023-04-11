@@ -10,6 +10,7 @@ Broker
 - Delete customer
 - Delete stock
 - Logout
+
 Customer
 - Sign up with first name, last name, username, password, address, mobile number, and email
 - Login with their own credentials
