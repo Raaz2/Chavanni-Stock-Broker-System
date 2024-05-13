@@ -1,5 +1,5 @@
 ## CHAVANNI :- Stock Broker System
-This project is a stock broker system that allows customers to invest and trade in shares. It has two users - brokers and customers.
+CHAVANNI is a stock broker system that allows customers to invest and trade in shares. It has two users - brokers and customers.
 
 So, this application provides a comprehensive and user-friendly platform for stockbrokers and their clients. It simplifies the work of stockbrokers and provides their clients with a seamless investment experience.. 
 So, Whenever anyone wants to trade in stocks he/she needs to create a trading account and then they can start buying or selling the stocks. The broker is an admin who has all the data related to stocks as well as users. So basically it’s a system that manages client and their holdings.
